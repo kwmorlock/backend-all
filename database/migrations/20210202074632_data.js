@@ -6,7 +6,7 @@ exports.up = function (knex) {
       tbl.string("password", 20).notNullable();
       tbl.string("email");
     })
-    .createTable("stuff", (tbl) => {
+    .createTable("information", (tbl) => {
       tbl.increments();
       tbl.string("title", 50).index().notNullable();
       tbl.string("description", 2000).notNullable();
