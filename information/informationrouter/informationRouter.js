@@ -28,4 +28,18 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.post("/:id", (req, res) => {
+  const id = req.params.id;
+  req.body.usersId = id;
+  const info = req.body;
+
+  Information.add(info)
+    .then((newInfo) => {
+      res.status(201).json({ newInfo });
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error });
+    });
+});
+
 module.exports = router;
