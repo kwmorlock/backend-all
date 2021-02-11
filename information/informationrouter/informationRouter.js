@@ -42,4 +42,23 @@ router.post("/:id", (req, res) => {
     });
 });
 
+router.put("/:id", (req, res) => {
+  const id = req.params.id;
+  const updates = req.body;
+
+  Information.findById(id)
+    .then((info) => {
+      if (info) {
+        Information.update(updates, id).then((update) => {
+          res.status(201).json(update);
+        });
+      } else {
+        res.status(404).json({ message: "Unable to find info" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error });
+    });
+});
+
 module.exports = router;
