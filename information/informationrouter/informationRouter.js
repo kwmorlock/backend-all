@@ -61,4 +61,20 @@ router.put("/:id", (req, res) => {
     });
 });
 
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+
+  Information.destroy(id)
+    .then((bye) => {
+      if (bye) {
+        res.status(200).json({ removed: bye });
+      } else {
+        res.status(404).json({ message: "Could not find info" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error });
+    });
+});
+
 module.exports = router;
