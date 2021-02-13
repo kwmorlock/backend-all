@@ -77,4 +77,20 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+router.get("/user/:id", (req, res) => {
+  const id = req.params.id;
+
+  Information.findByUser(id)
+    .then((info) => {
+      if (info) {
+        res.status(200).json(info);
+      } else {
+        res.status(404).json({ message: "Unable to find info for that user." });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error });
+    });
+});
+
 module.exports = router;
