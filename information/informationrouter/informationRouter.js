@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const Information = require("./informationRouter");
+const Information = require("./informationModel");
 
 router.get("/", (req, res) => {
   Information.find()
